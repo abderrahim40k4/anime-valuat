@@ -55,7 +55,7 @@ function AnimeCard({ anime, index }: Prop) {
       initial="hidden"
       animate="visible"
       className="max-w-sm rounded relative w-full">
-      <Card>
+      <Card className="px-4">
         <CardHeader>
          <div className="flex justify-between items-center">
          <CardTitle>
@@ -70,16 +70,16 @@ function AnimeCard({ anime, index }: Prop) {
           </CardDescription>
          </div>
         </CardHeader>
-        <CardContent className="relative w-full h-[37vh]">
+        <CardContent className="relative w-full h-[37vh] mb-4">
         <Image
           src={`https://shikimori.one/${anime.image.original}`}
           alt={anime.name}
           fill
-          className="rounded-xl"
+          className="rounded-xl w-full mb-4"
         />
         </CardContent>
         <CardFooter className="flex gap-4 items-center justify-between">
-          <div className="flex flex-row gap-2 items-center">
+          <div className="flex flex-row gap-1 items-center">
             <Image
               src="./episodes.svg"
               alt="episodes"
@@ -87,11 +87,11 @@ function AnimeCard({ anime, index }: Prop) {
               height={20}
               className="object-contain"
             />
-            <p className="text-base text-white font-bold">
+            <p className="text-base font-bold">
               {anime.episodes || anime.episodes_aired}
             </p>
           </div>
-          <div className="flex flex-row gap-2 items-center">
+          <div className="flex flex-row gap-1 items-center">
             <Image
               src="./star.svg"
               alt="star"
