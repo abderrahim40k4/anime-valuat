@@ -1,6 +1,16 @@
 import Image from "next/image";
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import { MotionDiv } from "./MotionDiv";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 export interface AnimeProp {
   id: string;
   name: string;
@@ -18,53 +28,57 @@ interface Prop {
   index: number;
 }
 interface Varaint {
-  hidden:object;
-  visible:object;
+  hidden: object;
+  visible: object;
 }
 const variants = {
-  hidden:{
-    opactiy:0
+  hidden: {
+    opactiy: 0
 
   },
-  visible:{
-    opacity:1
+  visible: {
+    opacity: 1
   },
 
 };
 function AnimeCard({ anime, index }: Prop) {
   return (
-   
-      <MotionDiv
+
+    <MotionDiv
       variants={variants}
       transition={{
         delay: index * 0.25,
-        ease:"easeInOut",
-        duration:0.5,
+        ease: "easeInOut",
+        duration: 0.5,
       }}
-      viewport={{amount:0,}}
+      viewport={{ amount: 0, }}
       initial="hidden"
       animate="visible"
       className="max-w-sm rounded relative w-full">
-      <div className="relative w-full h-[37vh]">
+      <Card>
+        <CardHeader>
+         <div className="flex justify-between items-center">
+         <CardTitle>
+          <h2 className="font-bold text-xl line-clamp-1 w-full">
+            {anime.name}
+          </h2>
+          </CardTitle>
+          <CardDescription>
+          <p className="text-sm font-bold capitalize">
+              {anime.kind}
+            </p>
+          </CardDescription>
+         </div>
+        </CardHeader>
+        <CardContent className="relative w-full h-[37vh]">
         <Image
           src={`https://shikimori.one/${anime.image.original}`}
           alt={anime.name}
           fill
           className="rounded-xl"
         />
-      </div>
-      <div className="py-4 flex flex-col gap-3">
-        <div className="flex justify-between items-center gap-1">
-          <h2 className="font-bold text-white text-xl line-clamp-1 w-full">
-            {anime.name}
-          </h2>
-          <div className="py-1 px-2 bg-[#161921] rounded-sm">
-            <p className="text-white text-sm font-bold capitalize">
-              {anime.kind}
-            </p>
-          </div>
-        </div>
-        <div className="flex gap-4 items-center">
+        </CardContent>
+        <CardFooter className="flex gap-4 items-center justify-between">
           <div className="flex flex-row gap-2 items-center">
             <Image
               src="./episodes.svg"
@@ -87,10 +101,10 @@ function AnimeCard({ anime, index }: Prop) {
             />
             <p className="text-base font-bold text-[#FFAD49]">{anime.score}</p>
           </div>
-        </div>
-      </div>
-   </MotionDiv>
-    
+        </CardFooter>
+      </Card>
+    </MotionDiv>
+
   );
 }
 
